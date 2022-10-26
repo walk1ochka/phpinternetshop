@@ -18,21 +18,30 @@ session_start();
             Autoparts
         </h1>
         <div class="right">
-            <div class="right__card chart">
-            <?php
-            $count = 0;
-            foreach ($_COOKIE as $item){
-                $arr = json_decode($item,true);
-                if (isset($arr["count"])){
-                    $count+=$arr["count"];
+            <div class="right__card">
+                <?php
+                $text = "Enter";
+                if (isset($_SESSION["user"])){
+                    $text = $_SESSION["user"];
                 }
-            }
-            echo "<div class='counter'>$count</div>";
-            ?>
-            <a href="chart.php"><img src="pics/cart-svgrepo-com.svg" class="img-chart"></a>
+                echo "<p class='userData'>$text</p>"
+                ?>
             </div>
             <div class="right__card">
                 <a href="auth.php"><img src="pics/user.png" class="img-chart"></a>
+            </div>
+            <div class="right__card chart">
+                <?php
+                $count = 0;
+                foreach ($_COOKIE as $item){
+                    $arr = json_decode($item,true);
+                    if (isset($arr["count"])){
+                        $count+=$arr["count"];
+                    }
+                }
+                echo "<div class='counter'>$count</div>";
+                ?>
+                <a href="chart.php"><img src="pics/cart-svgrepo-com.svg" class="img-chart"></a>
             </div>
         </div>
     </div>

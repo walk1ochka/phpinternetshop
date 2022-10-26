@@ -18,7 +18,7 @@ session_start();
             <?php
             $value = "Enter";
             if (empty($_SESSION["user"])){
-                echo "<img src='pics/user.png' class='form__img'>
+                echo "<a href='index.php'><img src='pics/user.png' class='form__img'></a>
                 <input type='text' name='login' placeholder='login' class='form__input'>
                 <input type='password' name='pass' placeholder='password' class='form__input'>";
             } else{

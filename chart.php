@@ -22,6 +22,7 @@
     <div class="cards__container">
         <?php
         $sum = 0;
+        krsort($_COOKIE);
         foreach ($_COOKIE as $key => $item) {
             if (is_numeric($key)) {
                 $arr = json_decode($item, true);
