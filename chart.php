@@ -22,21 +22,22 @@
     <div class="cards__container">
         <?php
         $sum = 0;
-        krsort($_COOKIE);
-        foreach ($_COOKIE as $key => $item) {
+        $array = isset($_COOKIE["chart"])? json_decode($_COOKIE["chart"],true):array();
+        krsort($array);
+        foreach ($array as $key => $item) {
             if (is_numeric($key)) {
-                $arr = json_decode($item, true);
-                $price = $arr["price"] * $arr["count"];
+                $price = $item["price"] * $item["count"];
                 $sum += $price;
+                $arr = json_encode($item);
                 echo "<form action='chartCookie.php' class='chart__card' method='post'>
             <div class='img__container'>
             <img src='pics/$key.jpg' class='chart__card-img'>
             <div>
-            $arr[name]
+            $item[name]
             </div>
             <div class='buttonsContainer'>
             <input type='submit' value='-' name='remove' class='buttonAdd'>    
-            <div class='count'>$arr[count]</div>
+            <div class='count'>$item[count]</div>
             <input type='submit' value='+' class='buttonAdd'>
             </div>
             </div>   
@@ -44,7 +45,7 @@
             <input type='submit' value='delete' name='delete' class='delete'>
             <div class='price'>$price$</div>
             </div>
-            <input type='hidden' value='$item' name='$key'>
+            <input type='hidden' value='$arr' name='$key'>
             </form>";
             }
         }

@@ -1,19 +1,18 @@
 <?php
+$chart = isset($_COOKIE["chart"])? json_decode($_COOKIE["chart"],true):array();
 foreach($_POST as $key => $item){
     if (is_numeric($key)){
-        if (!empty($_COOKIE[$key])) {
-            $deltaTime = 3600;
-            $arr = json_decode($_COOKIE[$key], true);
+        if (!empty($chart[$key])) {
             if (array_search("-",$_POST) == "remove"){
-                $arr["count"]--;
+                $chart[$key]["count"]--;
             } else {
-                $arr["count"]++;
+                $chart[$key]["count"]++;
             }
-            if((array_search("delete",$_POST) == "delete") || $arr["count"] <=0){
-                $deltaTime*=-1;
+            if((array_search("delete",$_POST) == "delete") || $chart[$key]["count"] <=0) {
+                unset($chart[$key]);
             }
-            setcookie($key,json_encode($arr),time()+$deltaTime);
         }
+        setcookie("chart",json_encode($chart),time()+3600);
         header("Location: chart.php");
         exit;
     }

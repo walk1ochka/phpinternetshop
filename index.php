@@ -33,10 +33,10 @@ session_start();
             <div class="right__card chart">
                 <?php
                 $count = 0;
-                foreach ($_COOKIE as $item){
-                    $arr = json_decode($item,true);
-                    if (isset($arr["count"])){
-                        $count+=$arr["count"];
+                $chart = json_decode($_COOKIE["chart"],true);
+                foreach ($chart as $item){
+                    if (isset($item["count"])){
+                        $count+=$item["count"];
                     }
                 }
                 echo "<div class='counter'>$count</div>";

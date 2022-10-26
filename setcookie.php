@@ -1,15 +1,17 @@
 <?php
+$chart = isset($_COOKIE["chart"])? json_decode($_COOKIE["chart"],true):array();
 foreach($_POST as $key => $item){
     if (is_numeric($key)){
         $arr = json_decode($item,true);
         $arr["count"]=1;
-        if (!empty($_COOKIE[$key])) {
-            $arr = json_decode($_COOKIE[$key], true);
+        if (!empty($chart[$key])) {
+            $arr = $chart[$key];
             $arr["count"]++;
         }
-        setcookie($key,json_encode($arr),time()+3600);
-
+        $chart[$key] = $arr;
     }
 }
+//print_r($chart);
+setcookie("chart",json_encode($chart),time()+3600);
 header("Location: index.php");
 exit;
