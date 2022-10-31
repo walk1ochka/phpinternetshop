@@ -1,5 +1,12 @@
 <?php
 session_start();
+$mysql = new mysqli("localhost", "root","","internet_shop");
+$shop = array();
+$res = $mysql->query("SELECT * FROM `goods` WHERE `id` > 400");
+while ($row=$res->fetch_assoc()){
+    $shop[$row['id']] = array('name' => $row['name'],'price' => $row['price']);
+}
+$mysql->close();
 ?>
 <!doctype html>
 <html lang="en">
@@ -50,13 +57,7 @@ session_start();
 <div class="content">
     <div class="container">
         <?php
-        $shop = array("401" => array("name" => "cardan shaft", "price" => 4000,),
-            "402" => array("name" => "spark plug", "price" => 100),
-            "403" => array("name" => "timing belt", "price" => 400),
-            "404" => array("name" => "piston", "price" => 1000),
-            "405" => array("name" => "oil filter", "price" => 300),
-            "406" => array("name" => "flywheel", "price" => 1500)
-        );
+
         foreach ($shop as $key => $item) {
             $value = json_encode($item);
             echo "<form class='card' action='setcookie.php' method='post'>
