@@ -1,9 +1,8 @@
 <?php
 session_start();
 $mysql = new mysqli("localhost", "root","","internet_shop");
-
 $location = "auth.php";
-if ($_POST["submit"] != "Log out?"){
+if ($_POST["submit"] != "Log out"){
     $login = $_POST["login"];
     $password = md5($_POST["pass"]);
     $res = $mysql->query("SELECT password FROM `users` where login ='$login'")->fetch_assoc();
@@ -18,4 +17,5 @@ if ($_POST["submit"] != "Log out?"){
     unset($_SESSION["user"]);
 }
 header("Location: $location");
+$mysql->close();
 exit;

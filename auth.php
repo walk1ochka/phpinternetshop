@@ -21,9 +21,12 @@ session_start();
                 echo "<a href='index.php'><img src='pics/user.png' class='form__img'></a>
                 <input type='text' name='login' placeholder='login' class='form__input'>
                 <input type='password' name='pass' placeholder='password' class='form__input'>";
+            } elseif ($_SESSION["user"] == "admin"){
+                header("Location: refactor.php");
+                exit;
             } else{
                 echo "<p class='authMessage'>You are already in account</p>";
-                $value = "Log out?";
+                $value = "Log out";
             }
             echo "<input type='submit' class='form__input form__input-submit' value='$value' name='submit'>";
             ?>

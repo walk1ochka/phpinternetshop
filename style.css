@@ -128,7 +128,7 @@ h1{
 }
 .infoContainer{
     justify-content: space-between;
-    width: 220px;
+    width: auto;
 }
 .buttonAdd{
     width: 30px;
@@ -156,6 +156,7 @@ h1{
     background: red;
     color: white;
     font-weight: bold;
+    margin-right: 30px;
 }
 
 button:hover{
@@ -222,7 +223,7 @@ button:hover{
 }
 
 .form__input-submit{
-    width: 50%;
+    width: 150px;
     padding: 5px 0;
     font-weight: bold;
     background: #0031a4;
@@ -234,4 +235,42 @@ button:hover{
     font-family: Arial;
     font-size: 2rem;
     margin: 20px auto;
+}
+
+/*=======================refactor.php===================*/
+
+.ref__container{
+    width: auto;
+}
+
+.ref__input{
+    width: 100px;
+    height: 40px;
+    margin: 0 10px;
+    font-family: Arial;
+    font-size: 1.5rem;
+    padding: 0 0 0 4% ;
+    border-radius: 10px;
+}
+
+.ref__input.text{
+    width: 250px;
+}
+.header__buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.header__buttons__card > input{
+    width: 100px;
+    padding: 0;
+    margin: 0 5px;
+}
+
+.ref__addBtm{
+    background: white;
+    color: black;
+}
+
+.confirm{
+    background: #0b4fec;
 }
