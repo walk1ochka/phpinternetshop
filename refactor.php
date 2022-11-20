@@ -12,11 +12,16 @@
 <header class="header">
     <div class="container header__content">
         <a href="index.php"><h1>
-                Autoparts
+                Auto-parts
             </h1></a>
         <div class="header__buttons">
-            <form action="add.php" method="post" class="header__buttons__card"><input type="submit" value="Add new" class="form__input form__input-submit ref__addBtm" ></form>
-            <form action="login.php" method="post" class="header__buttons__card"><input type="submit" name="submit" value="Log out" class="form__input form__input-submit"></form>
+            <form action="add.php" method="post" class="header__buttons__card"><input type="submit" value="Add new"
+                                                                                      class="form__input form__input-submit ref__addBtm">
+            </form>
+            <form action="login.php" method="post" class="header__buttons__card"><input type="submit" name="submit"
+                                                                                        value="Log out"
+                                                                                        class="form__input form__input-submit">
+            </form>
         </div>
 
     </div>
@@ -25,24 +30,26 @@
     <div class="cards__container">
         <?php
         session_start();
-        if ($_SESSION['user'] != 'admin')
+        if (!$_SESSION['admin'])
             header("Location: index.php");
-        $mysql = new mysqli("localhost", "root", "", "internet_shop");
-        $shop = array();
-        $res = $mysql->query("SELECT * FROM `goods` WHERE `id` > 400");
-        while ($row = $res->fetch_assoc()) {
-            $shop[$row['id']] = array('name' => $row['name'], 'price' => $row['price']);
+        require "getArr.php";
+        $shop = getArr();
+        if (isset($_SESSION['Error'])){
+            echo "<div class='error'>Error: $_SESSION[Error]</div>";
         }
-        $mysql->close();
         foreach ($shop as $key => $item) {
             if (is_numeric($key)) {
-                echo "<form action='changeData.php' class='chart__card' method='post'>
+                echo "<form action='changeData.php' class='chart__card' method='post' enctype='multipart/form-data'>
             <div class='img__container ref__container'>
             <img src='pics/$key.jpg' class='chart__card-img'>
+            <div class='inputsContainer'>
             <div class='buttonsContainer'>
-            <input type='text' name='name' value='$item[name]' class='ref__input text'>
-            <input type='text' name='price' value='$item[price]' class='ref__input price'></div>
-            </div>   
+            <input type='text' name='name' value='$item[name]' class='ref__input text' maxlength='40' required>
+            <input type='text' name='price' value='$item[price]' class='ref__input price' maxlength='6' required>
+            </div> 
+            <input type='file' name='pictureChange' id='$key' class='fileInput' accept='.png, .jpg, .jpeg'>
+            </div>
+            </div>
             <div class='infoContainer'>
             <input type='submit' value='confirm' name='submit' class='delete confirm'>
             <input type='submit' value='delete' name='submit' class='delete'>

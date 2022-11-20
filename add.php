@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (!$_SESSION['admin'])
+    header("Location: index.php");
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,17 +14,15 @@
     <title>Document</title>
 </head>
 <body>
-<header class="header">
-    <div class="container header__content">
-        <a href="index.php"><h1>
-                Autoparts
-            </h1></a>
-
-    </div>
-</header>
 <div class="background">
     <div class="form__container">
-        <form action="login.php" class="form" method="post"></form>
+        <form action="changeData.php" class="form"  method="post" enctype="multipart/form-data">
+            <div class="form__label">Add new goods</div>
+            <input type="text" class="add__input form__input" name="name" placeholder="name">
+            <input type="text" class="add__input form__input" name="price" placeholder="price">
+            <input type="file" class="add__input form__input" name="picture" accept='.png, .jpg, .jpeg'>
+            <input type="submit" class="add__input form__input form__input-submit" name="submit" value="Add">
+        </form>
     </div>
 </div>
 </body>

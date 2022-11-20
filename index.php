@@ -1,12 +1,7 @@
 <?php
 session_start();
-$mysql = new mysqli("localhost", "root","","internet_shop");
-$shop = array();
-$res = $mysql->query("SELECT * FROM `goods` WHERE `id` > 400");
-while ($row=$res->fetch_assoc()){
-    $shop[$row['id']] = array('name' => $row['name'],'price' => $row['price']);
-}
-$mysql->close();
+require "getArr.php";
+$shop = getArr();
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,7 +17,7 @@ $mysql->close();
 <header class="header">
     <div class="container header__content">
         <h1>
-            Autoparts
+            Auto-parts
         </h1>
         <div class="right">
             <div class="right__card">
@@ -72,14 +67,7 @@ $mysql->close();
         }
         ?>
     </div>
-<!--    --><?php
-//        foreach ($_COOKIE as $key => $item){
-//            $arr = json_decode($item,true);
-//            echo "<p>$arr[name]:</p>
-//            <p>$arr[count]</p>";
-//        }
-//
-//    ?>
+
 </div>
 </body>
 </html>

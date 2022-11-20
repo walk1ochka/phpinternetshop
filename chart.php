@@ -12,7 +12,7 @@
 <header class="header">
     <div class="container header__content">
         <a href="index.php"><h1>
-                Autoparts
+                Auto-parts
             </h1></a>
         <a href="chart.php"><img src="pics/cart-svgrepo-com.svg" class="img-chart"></a>
 

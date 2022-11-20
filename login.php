@@ -1,21 +1,33 @@
 <?php
 session_start();
-$mysql = new mysqli("localhost", "root","","internet_shop");
+$mysql = new mysqli("localhost", "root", "", "internet_shop");
 $location = "auth.php";
-if ($_POST["submit"] != "Log out"){
-    $login = $_POST["login"];
-    $password = md5($_POST["pass"]);
-    $res = $mysql->query("SELECT password FROM `users` where login ='$login'")->fetch_assoc();
-    if (isset($res) && $res['password'] == $password){
-        $_SESSION["user"] = $login;
-        $location = "index.php";
-        unset($_SESSION["response"]);
-    } else {
-        $_SESSION["response"] = "wrong login or password";
-    };
-} else{
-    unset($_SESSION["user"]);
-}
-header("Location: $location");
-$mysql->close();
-exit;
+unset($_SESSION['loginInfo']);
+unset($_SESSION['passwordInfo']);
+
+if ($_POST["submit"] != "Log out") {
+    $login = $_POST["login"] ?? null;
+    $password = md5($_POST["pass"]) ?? null;
+    $res = $mysql->query("SELECT `password`,`admin` FROM `users` where login ='$login'")->fetch_assoc();
+    if (empty($res)) {
+        $_SESSION['loginInfo'] = "this user does not exist";
+    } elseif (strlen($password) < 3 || strlen($password) > 50 || $res['password'] != $password) {
+            $_SESSION["login"] = $login;
+            $_SESSION["passwordInfo"] = "wrong password";
+        } else {
+            $_SESSION["user"] = $login;
+            $_SESSION["admin"] = (bool)$res['admin'];
+            $location = "index.php";
+            unset($_SESSION['loginInfo']);
+            unset($_SESSION['passwordInfo']);
+        }
+    }
+else{
+        unset($_SESSION["user"]);
+        unset($_SESSION["admin"]);
+    }
+    header("Location: $location");
+    $mysql->close();
+    exit;
+
+

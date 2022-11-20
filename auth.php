@@ -17,11 +17,17 @@ session_start();
         <form action="login.php" class="form" method="post">
             <?php
             $value = "Enter";
+            $login = $_SESSION['login']??null;
             if (empty($_SESSION["user"])){
                 echo "<a href='index.php'><img src='pics/user.png' class='form__img'></a>
-                <input type='text' name='login' placeholder='login' class='form__input'>
-                <input type='password' name='pass' placeholder='password' class='form__input'>";
-            } elseif ($_SESSION["user"] == "admin"){
+                <input type='text' name='login' placeholder='login' class='form__input' value='$login'>";
+                if (isset($_SESSION['loginInfo'])){
+                echo "<div class='label'>$_SESSION[loginInfo]</div>";}
+                echo "<input type='password' name='pass' placeholder='password' class='form__input'>";
+                if (isset($_SESSION['passwordInfo'])){
+                    echo "<div class='label'>$_SESSION[passwordInfo]</div>";}
+
+            } elseif ($_SESSION["admin"]){
                 header("Location: refactor.php");
                 exit;
             } else{
