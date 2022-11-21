@@ -319,3 +319,9 @@ button:hover{
     margin-left: 5px;
     font-weight: bold;
 }
+
+.submitContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 350px
+}

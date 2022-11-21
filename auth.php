@@ -35,8 +35,12 @@ session_start();
                         <input type='submit' class='form__input form__input-submit' value='Log out' name='submit'>";
             }?>
             <div class="submitContainer">
-                <input type='submit' class='form__input form__input-submit' value='Enter' name='submit'>
-                <?php if(empty($_SESSION["user"])) echo "<input type='submit' class='form__input form__input-submit' value='Sign up' name='submit'>"?>
+                <?php if(empty($_SESSION["user"])) {
+
+                    echo "<input type='submit' class='form__input form__input-submit' value='Enter' name='submit'>";
+                    echo "<input type='submit' class='form__input form__input-submit' value='Sign up' name='submit'>";
+}
+?>
             </div>
         </form>
     </div>

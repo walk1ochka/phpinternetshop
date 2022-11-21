@@ -18,6 +18,9 @@
             <form action="add.php" method="post" class="header__buttons__card"><input type="submit" value="Add new"
                                                                                       class="form__input form__input-submit ref__addBtm">
             </form>
+            <form action="add.php" method="post" class="header__buttons__card"><input type="submit" value="Add new"
+                                                                                      class="form__input form__input-submit ref__addBtm">
+            </form>
             <form action="login.php" method="post" class="header__buttons__card"><input type="submit" name="submit"
                                                                                         value="Log out"
                                                                                         class="form__input form__input-submit">
@@ -34,8 +37,9 @@
             header("Location: index.php");
         require "getArr.php";
         $shop = getArr();
-        if (isset($_SESSION['Error'])){
-            echo "<div class='error'>Error: $_SESSION[Error]</div>";
+        if (isset($_SESSION['refactor'])) {
+            foreach ($_SESSION['refactor'] as $item)
+                echo "<div class='error'>Error: $item</div>";
         }
         foreach ($shop as $key => $item) {
             if (is_numeric($key)) {
