@@ -5,7 +5,11 @@ $location = "auth.php";
 unset($_SESSION['loginInfo']);
 unset($_SESSION['passwordInfo']);
 
-if ($_POST["submit"] != "Log out") {
+
+if ($_POST["submit"] == "Sign up"){
+    header("Location:registration.php");
+    exit();
+} elseif ($_POST["submit"] != "Log out") {
     $login = $_POST["login"] ?? null;
     $password = md5($_POST["pass"]) ?? null;
     $res = $mysql->query("SELECT `password`,`admin` FROM `users` where login ='$login'")->fetch_assoc();
@@ -25,6 +29,7 @@ if ($_POST["submit"] != "Log out") {
 else{
         unset($_SESSION["user"]);
         unset($_SESSION["admin"]);
+        unset($_SESSION['login']);
     }
     header("Location: $location");
     $mysql->close();

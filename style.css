@@ -305,3 +305,17 @@ button:hover{
     font-weight: bold;
     font-size: 1.6rem;
 }
+
+/*============registration.php=============*/
+
+.signUp{
+    height: 450px;
+}
+
+.form>label{
+    color: red;
+    align-self: start;
+    font-family: Arial;
+    margin-left: 5px;
+    font-weight: bold;
+}

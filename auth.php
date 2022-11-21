@@ -16,7 +16,7 @@ session_start();
     <div class="form__container">
         <form action="login.php" class="form" method="post">
             <?php
-            $value = "Enter";
+            $admin = $_SESSION['admin']??null;
             $login = $_SESSION['login']??null;
             if (empty($_SESSION["user"])){
                 echo "<a href='index.php'><img src='pics/user.png' class='form__img'></a>
@@ -27,15 +27,17 @@ session_start();
                 if (isset($_SESSION['passwordInfo'])){
                     echo "<div class='label'>$_SESSION[passwordInfo]</div>";}
 
-            } elseif ($_SESSION["admin"]){
+            } elseif ($admin){
                 header("Location: refactor.php");
                 exit;
             } else{
-                echo "<p class='authMessage'>You are already in account</p>";
-                $value = "Log out";
-            }
-            echo "<input type='submit' class='form__input form__input-submit' value='$value' name='submit'>";
-            ?>
+                echo "<p class='authMessage'>You are already in account</p>
+                        <input type='submit' class='form__input form__input-submit' value='Log out' name='submit'>";
+            }?>
+            <div class="submitContainer">
+                <input type='submit' class='form__input form__input-submit' value='Enter' name='submit'>
+                <?php if(empty($_SESSION["user"])) echo "<input type='submit' class='form__input form__input-submit' value='Sign up' name='submit'>"?>
+            </div>
         </form>
     </div>
 </div>
