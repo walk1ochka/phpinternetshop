@@ -15,8 +15,12 @@
                 Auto-parts
             </h1></a>
         <div class="header__buttons">
-            <form action="add.php" method="post" class="header__buttons__card"><input type="submit" value="Add new"
-                                                                                      class="form__input form__input-submit ref__addBtm">
+            <form action="parseUri.php" method="get" class="header__buttons__card">
+                <input type="submit" value="parse"
+                       class="form__input form__input-submit ref__addBtm">
+                <input type="hidden" name="count"value="1007">
+                <input type="hidden" name="id"value="993">
+                <input type="hidden" name="name"value="ghoul">
             </form>
             <form action="add.php" method="post" class="header__buttons__card"><input type="submit" value="Add new"
                                                                                       class="form__input form__input-submit ref__addBtm">

@@ -325,3 +325,34 @@ button:hover{
     justify-content: space-between;
     width: 350px
 }
+
+/*====================parseUri.php==============*/
+.uri__info{
+    font-family: Arial;
+    font-size: 2rem;
+    margin: 5px;
+
+}
+.uri__info>span{
+    font-weight: bold;
+}
+.get {
+    padding-left: 20px;
+}
+.get>span{
+    font-style: italic;
+    text-decoration: underline;
+    font-weight: normal;
+}
+.body__container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+.uri__container{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
